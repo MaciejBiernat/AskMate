@@ -51,7 +51,7 @@ def ask_question():
 
     return render_template('add_question.html')
 
-@app.route('/question/<question_id>/new-answer')
+@app.route('/queston/<question_id>/new-answer')
 def post_an_answer():
     '''
     Implement posting a new answer.

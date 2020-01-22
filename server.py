@@ -37,7 +37,7 @@ def display_question():
 
     return render_template('question.html')
 
-@app.route('/add-question')
+@app.route('/add-question', methods=["GET", "POST"])
 def ask_question():
     '''
     Implement a form that allows you to add a question.
@@ -48,8 +48,13 @@ def ask_question():
     After submitting, you are redirected to "Display a question" page of this new question
     :return:
     '''
-
-    return render_template('add_question.html')
+    new_question = {}
+    if request.method == "POST":
+        new_question["title"] = request.form["title"]
+        new_question["message"] = request.form["message"]
+        # dodać zapisywanie z potrzebnymi innymi kolumnami
+        # ewentualnie dodać jakoś ten image
+    return render_template('add-question.html')
 
 @app.route('/queston/<question_id>/new-answer')
 def post_an_answer():

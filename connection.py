@@ -2,21 +2,12 @@ import csv
 import os
 
 
-#
-# def get_all_user_story():
-#     user_stories = csv.DictReader(open("data.csv"))
-#     return user_stories
-#
-# def save_stories(requests):
-#
-#     with open('data.csv', 'a') as my_file:
-#         writer = csv.DictWriter(my_file, fieldnames=DATA_HEADER)
-#         writer.writerow(requests)
-#     return []
-#
-# def generate_id():
-#     previous_data = get_all_user_story()
-#     max_id = 0
-#     for row in previous_data:
-#         max_id += 1
-#     return max_id
+def reader_csv(filename):
+    dictionaries = csv.DictReader(open(filename))
+    return dictionaries
+
+def writer_csv(filename, fieldnames, new_data):
+    with open(filename, 'a') as my_file:
+        writer = csv.DictWriter(my_file, fieldnames=fieldnames)
+        writer.writerow(new_data)
+

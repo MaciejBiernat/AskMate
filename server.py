@@ -20,8 +20,8 @@ def list_questions():
     Load and display the data from question.csv
     Sort the questions by the latest question on top
     '''
-    all_questions = connection.reader_csv("question.py")
-    all_answers = connection.reader_csv("answers.py")
+    all_questions = connection.reader_csv("/home/anna/Codecool/Web/2TW/sprint1/AskMateRepo/question.csv")
+    all_answers = connection.reader_csv("/home/anna/Codecool/Web/2TW/sprint1/AskMateRepo/answer.csv")
 
     return render_template("list.html", all_questions=all_questions, all_answers=all_answers)
 
@@ -37,7 +37,7 @@ def display_question():
 
     return render_template('question.html')
 
-@app.route('/add-question')
+@app.route('/add-question', methods=["GET","POST"])
 def ask_question():
     '''
     Implement a form that allows you to add a question.
@@ -48,8 +48,13 @@ def ask_question():
     After submitting, you are redirected to "Display a question" page of this new question
     :return:
     '''
-
-    return render_template('add_question.html')
+    new_question = {}
+    if request.method == "POST":
+        new_question["title"] = request.form["title"]
+        new_question["message"] = request.form["message"]
+        #dodać zapisywanie z potrzebnymi innymi kolumnami
+        # ewentualnie dodać jakoś ten image
+    return render_template('add-question.html')
 
 @app.route('/queston/<question_id>/new-answer')
 def post_an_answer():

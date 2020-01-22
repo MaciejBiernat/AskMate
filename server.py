@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
-from collections import OrderedDict
+from flask import Flask, render_template, request, redirect
 
 
 app = Flask(__name__)
@@ -8,7 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def route_list():
 
-    return render_template('list.html')
+    return render_template('index.html')
 
 
 @app.route('/list')
@@ -47,7 +46,7 @@ def ask_question():
 
     return render_template('add_question.html')
 
-@app.route('/queston/<question_id>/new-answer')
+@app.route('/question/<question_id>/new-answer')
 def post_an_answer():
     '''
     Implement posting a new answer.

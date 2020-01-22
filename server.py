@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 from collections import OrderedDict
 import connection
-
+import data_manager
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def route_list():
-
+    data_manager.time_decoding()
     return render_template("index.html")
 
 
@@ -20,8 +20,8 @@ def list_questions():
     Load and display the data from question.csv
     Sort the questions by the latest question on top
     '''
-    all_questions = connection.reader_csv("question.py")
-    all_answers = connection.reader_csv("answers.py")
+    all_questions = connection.reader_csv("question.csv")
+    all_answers = connection.reader_csv("answer.csv")
 
     return render_template("list.html", all_questions=all_questions, all_answers=all_answers)
 

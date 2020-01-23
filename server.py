@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def route_list():
-    data_manager.time_decoding()
+    data_manager.time_decoding("question.csv")
     return render_template("index.html")
 
 

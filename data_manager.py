@@ -14,3 +14,10 @@ def time_decoding(filename):
                 converted.append(item)
 
     return converted
+
+def generate_next_id(old_data):
+    max_id=0
+    for row in old_data:
+        max_id+=1
+    new_id = max_id + 1
+    return new_id

@@ -23,7 +23,7 @@ def list_questions():
     all_questions = connection.reader_csv("question.csv")
     all_answers = connection.reader_csv("answer.csv")
 
-    titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title', 'Message', 'Image']
+    titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title']
     all_questions = data_manager.time_decoding('question.csv')
     for question in all_questions:
         print(question)

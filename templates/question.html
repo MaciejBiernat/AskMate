@@ -4,11 +4,43 @@
     <meta charset="UTF-8">
     <title>Question </title>
 <body style="background-color:Lavender;">
+<style>
+    td {
+        border: 1px solid #999;
+        padding: 0.1em 1em;
+        max-width: 300px;
+    }
+</style>
 </head>
 <body>
-{{ question }}
-{% for answer in answers %}
-    <p>{{ answers }}</p>
-{% endfor %}
+<table>
+    <thead>
+    <th> AskMate Question:</th>
+
+    </thead>
+</table>
+<br><br>
+<table>
+    <tr>
+        <td>  {{ question['title'] }}</td>
+    </tr>
+    <tr>
+        <td> Q: {{ question['message'] }}</td>
+    </tr>
+</table>
+<br><br>
+<strong>Aswer 1</strong>
+<table>
+    <tr>
+        <td>
+            {% if answers != [] %}
+                <pre>{{ answers[0]['message'] }}</pre>
+                {{ asnwers }}
+            {% else %}
+                No answer posted yet
+            {% endif %}
+        </td>
+    </tr>
+</table>
 </body>
 </html>

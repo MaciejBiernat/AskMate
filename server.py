@@ -66,8 +66,8 @@ def ask_question():
         question_id = data_manager.generate_next_id("question.csv")
         new_question["id"] = question_id
         new_question["submission_time"] = "1493068124"
-        new_question["view_number"] = "view number"
-        new_question["vote_number"] = "vote_number"
+        new_question["view_number"] = "0"
+        new_question["vote_number"] = "0"
         new_question["title"] = request.form["title"]
         new_question["message"] = request.form["message"]
         new_question["image"] = "img"

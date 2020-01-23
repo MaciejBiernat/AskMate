@@ -14,5 +14,4 @@ def time_decoding(filename):
                 item.update({"submission_time":str(new_time)})
 
     converted_time_dicts = unconverted_time_dicts
-
     return converted_time_dicts

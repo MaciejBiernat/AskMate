@@ -2,11 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from collections import OrderedDict
 import connection
 import data_manager
-import os
 
 app = Flask(__name__)
 
-print(os.getcwd())
 
 @app.route('/')
 def route_list():
@@ -22,6 +20,8 @@ def list_questions():
     Load and display the data from question.csv
     Sort the questions by the latest question on top
     '''
+    all_questions = connection.reader_csv("question.csv")
+    all_answers = connection.reader_csv("answer.csv")
 
     titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title', 'Message', 'Image']
     all_questions = data_manager.time_decoding('question.csv')

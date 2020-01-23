@@ -37,12 +37,17 @@ def display_question(question_id):
     The page displays the question title and message
     The page displays all the answers to a question'''
     all_questions = data_manager.time_decoding('question.csv')
+    all_answers = data_manager.time_decoding('answer.csv')
 
     for row in all_questions:
         if row['id'] == str(question_id):
             question = row
+    answers = []
+    for row in all_answers:
+        if row['id'] == str(question_id):
+            answers.append(row)
 
-    return render_template('question.html', question=question)
+    return render_template('question.html', question=question, answers=answers)
 
 @app.route('/add-question', methods=["GET", "POST"])
 def ask_question():

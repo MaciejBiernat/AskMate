@@ -12,7 +12,7 @@ def route_list():
     return render_template("index.html")
 
 
-@app.route('/list')
+@app.route('/question')
 def list_questions():
     '''Implement the /list page that displays all questions.
 
@@ -25,7 +25,8 @@ def list_questions():
 
     titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title', 'Message', 'Image']
     all_questions = data_manager.time_decoding('question.csv')
-
+    for question in all_questions:
+        print(question)
     return render_template("list.html", all_questions=all_questions, titles=titles)
 
 

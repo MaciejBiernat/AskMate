@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Questions list</h1>
-        <a href="/list">Add a new User Story</a><br><br>
+
         <table width='100%'>
             <thead>
                 <tr>
@@ -18,7 +18,7 @@
             <tbody>
                 {% for question in all_questions %}
                     <tr>
-                        {% for key, value in all_questions.items() %}
+                        {% for key, value in question.items() %}
                             {% if key=="title" %}
                         <td style="text-align:center"><a href="/question/{{question.id}}">{{ value }}</a></td>
                             {% else %}

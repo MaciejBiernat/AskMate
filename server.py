@@ -61,11 +61,10 @@ def ask_question():
     :return:
     '''
     new_question = {}
-    old_data = connection.reader_csv("question.csv")
     titles = ["id", "submission_time", "view_number", "vote_number", "title", "message", "image"]
-    question_id = data_manager.generate_next_id(old_data)
     if request.method == "POST":
-        new_question["id"] = data_manager.generate_next_id(old_data)
+        question_id = data_manager.generate_next_id("question.csv")
+        new_question["id"] = question_id
         new_question["submission_time"] = "1493068124"
         new_question["view_number"] = "view number"
         new_question["vote_number"] = "vote_number"
@@ -75,8 +74,8 @@ def ask_question():
         # dodać zapisywanie z potrzebnymi innymi kolumnami
         # ewentualnie dodać jakoś ten image
         connection.writer_csv("question.csv", titles, new_question)
-        return redirect('/question/<question_id>/')
-    return render_template("add-question.html", question_id=question_id)
+        return redirect(f'/question/{question_id}')
+    return render_template("add-question.html")
 
 
 @app.route('/question/<question_id>/new-answer')

@@ -6,15 +6,15 @@
 </head>
 <body>
 <h1>Add new question</h1>
-<form action="/add-question" method="POST">
+<form action="/add-question/{{ question_id }}" method="POST">
     Title:<br>
     <input type="text" name="title" minlength="5" required><br>
     Message:<br>
-    <textarea type="text" name="user_story" required></textarea><br>
+    <textarea type="text" name="message" required></textarea><br>
     Image:<br>
     <input type="file" name="fileupload" value="fileupload" id="fileupload">
     <label for="fileupload"> Select an image to upload</label><br><br>
-    Tutaj będzie przycisk do display this question
+    <button type="submit">Add question!</button>
 </form>
 </body>
 </html>

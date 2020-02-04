@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to Ask Mate</title>
-</head>
-<body style="background-color:HoneyDew;">
-<h1>Welcome to AskMate</h1>
-<a href="/question">Questions and answers</a><br><br>
-<a href="/add-question">Add question</a><br><br>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block content %}
+    <a href="{{ url_for('mentor_names') }}">Mentor names</a><br>
+
+
+
+{% endblock %}

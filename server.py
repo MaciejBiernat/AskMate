@@ -11,22 +11,29 @@ def route_list():
 
     return render_template("index.html")
 
+@app.route('/list')
+def show_list_of_questions():
+    list_of_questions = data_manager.get_questions()
+    titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title', 'Message', 'Image']
 
-@app.route('/question')
+    return render_template('list.html', list_of_questions=list_of_questions, titles=titles)
 
-
-
-@app.route('/question/<int:question_id>')
-
-
-
-@app.route('/add-question', methods=["GET", "POST"])
-def ask_question():
-
-
-@app.route('/question/<question_id>/new-answer')
-def post_an_answer():
-
+#
+# @app.route('/question')
+#
+#
+#
+# @app.route('/question/<int:question_id>')
+#
+#
+#
+# @app.route('/add-question', methods=["GET", "POST"])
+# def ask_question():
+#
+#
+# @app.route('/question/<question_id>/new-answer')
+# def post_an_answer():
+#
 
 
 if __name__ == '__main__':

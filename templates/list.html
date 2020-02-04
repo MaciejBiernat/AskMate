@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for question in all_questions %}
+                {% for question in list_of_questions %}
                     <tr>
                         {% for key, value in question.items() %}
                             {% if key=="title" %}

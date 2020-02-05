@@ -24,7 +24,7 @@ def add_question(cursor, new_question):
 @connection.connection_handler
 def get_question_info(cursor, question_id):
     cursor.execute("""
-                        SELECT question.title, question.message FROM question
+                        SELECT question.title, question.message, question.id FROM question
                         where question.id = %(question_id)s;
                                """, {'question_id': question_id})
 

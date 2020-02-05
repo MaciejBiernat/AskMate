@@ -24,28 +24,28 @@ def show_list_of_questions():
 def show_question_info(question_id):
     question = data_manager.get_question_info(question_id)
     answers = data_manager.get_answer_info(question_id)
-    print(question)
-    print(answers)
 
     return render_template('question.html', question=question, answers=answers)
 
+@app.route('/question/<question_id>/new-answer', methods=["GET", "POST"])
+def post_an_answer(question_id):
+    new_answer = {}
+    print('dupa')
+    if request.method == "POST":
+        new_answer["submission_time"] = datetime.now()
+        new_answer['message'] = request.form['message']
+        new_answer['image'] = 'img'
+        new_answer['question_id'] = question_id
 
-#
-# @app.route('/question')
-#
-#
-#
-# @app.route('/question/<int:question_id>')
-#
-#
-#
+        return redirect(f'/question/{question_id}')
+    return render_template("add-answer.html", question_id=question_id)
+
+
 @app.route('/add-question', methods=["GET", "POST"])
 def ask_question():
     new_question = {}
     titles = ["submission_time", "view_number", "vote_number", "title", "message", "image"]
     if request.method == "POST":
-        # question_id = data_manager.generate_next_id("question.csv")
-        # new_question["id"] = question_id
         new_question["submission_time"] = datetime.now()
         new_question["view_number"] = "0"
         new_question["vote_number"] = "0"

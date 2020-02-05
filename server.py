@@ -2,13 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for
 from collections import OrderedDict
 import connection
 import data_manager
+from datetime import datetime
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def route_list():
-
     return render_template("index.html")
 
 @app.route('/list')
@@ -35,7 +35,7 @@ def ask_question():
     if request.method == "POST":
         # question_id = data_manager.generate_next_id("question.csv")
         # new_question["id"] = question_id
-        new_question["submission_time"] = "2017-05-01 10:41:00.000000"
+        new_question["submission_time"] = datetime.now()
         new_question["view_number"] = "0"
         new_question["vote_number"] = "0"
         new_question["title"] = request.form["title"]

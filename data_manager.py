@@ -14,8 +14,9 @@ def get_questions(cursor):
 def add_question(cursor, new_question):
     placeholders = ', '.join(['%s'] * len(new_question))
     columns = ', '.join([x[0] for x in new_question])
-    sql = "INSERT INTO %s ( %s ) VALUES ( %s )" % ('question', columns, placeholders)
+    sql = "INSERT INTO %s ( %s ) VALUES ( %s ) RETURNING * ;" % ('question', columns, placeholders)
 
     cursor.execute(sql, [y[1] for y in new_question])
-    id = cursor.lastrowid
+    rows = cursor.fetchall()
+    id = max([row['id'] for row in rows])
     return id

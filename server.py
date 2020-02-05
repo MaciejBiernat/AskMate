@@ -44,6 +44,7 @@ def ask_question():
 
         question_id = data_manager.add_question(new_question.items())
         return redirect(f'/question/{question_id}')
+
     return render_template("add-question.html")
 
 

@@ -11,12 +11,23 @@ app = Flask(__name__)
 def route_list():
     return render_template("index.html")
 
+
 @app.route('/list')
 def show_list_of_questions():
     list_of_questions = data_manager.get_questions()
     titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title', 'Message', 'Image']
 
     return render_template('list.html', list_of_questions=list_of_questions, titles=titles)
+
+
+@app.route('/question/<int:question_id>')
+def show_question_info(question_id):
+    question = data_manager.get_question_info(question_id)
+    answers = data_manager.get_answer_info(question_id)
+    print(question)
+    print(answers)
+
+    return render_template('question.html', question=question, answers=answers)
 
 
 #

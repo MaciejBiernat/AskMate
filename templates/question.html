@@ -22,25 +22,32 @@
 <br><br>
 <table>
     <tr>
-        <td>  {{ question['title'] }}</td>
+        <td>  {{ question[0]['title'] }}</td>
     </tr>
     <tr>
-        <td> Q: {{ question['message'] }}</td>
+        <td> Q: {{ question[0]['message'] }}</td>
     </tr>
 </table>
 <br><br>
-<strong>Aswer 1</strong>
+
 <table>
-    <tr>
-        <td>
-            {% if answers != [] %}
-                <pre>{{ answers[0]['message'] }}</pre>
-                {{ asnwers }}
-            {% else %}
+    {% if answers == [] %}
+        <tr>
+            <td>
                 No answer posted yet
-            {% endif %}
-        </td>
-    </tr>
+            </td>
+        </tr>
+    {% else %}
+        {% for answer in answers %}
+            <tr>
+                <td>
+                    <strong> Answer: {{ loop.index }} </strong>
+
+                    <pre>{{ answer['message'] }}</pre>
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
 </table>
 <br><br>
 <a href="/question">Back to Question list</a><br><br>

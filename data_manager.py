@@ -9,7 +9,6 @@ def get_questions(cursor):
     questions = cursor.fetchall()
     return questions
 
-
 @connection.connection_handler
 def add_question(cursor, new_question):
     placeholders = ', '.join(['%s'] * len(new_question))
@@ -20,3 +19,25 @@ def add_question(cursor, new_question):
     rows = cursor.fetchall()
     id = max([row['id'] for row in rows])
     return id
+
+
+@connection.connection_handler
+def get_question_info(cursor, question_id):
+    cursor.execute("""
+                        SELECT question.title, question.message FROM question
+                        where question.id = %(question_id)s;
+                               """, {'question_id': question_id})
+
+    question_info = cursor.fetchall()
+    return question_info
+
+
+@connection.connection_handler
+def get_answer_info(cursor, question_id):
+    cursor.execute("""
+                        SELECT answer.message FROM answer
+                        where answer.question_id = %(question_id)s;
+                               """, {'question_id': question_id})
+
+    answer_info = cursor.fetchall()
+    return answer_info

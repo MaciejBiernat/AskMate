@@ -41,3 +41,11 @@ def get_answer_info(cursor, question_id):
 
     answer_info = cursor.fetchall()
     return answer_info
+
+@connection.connection_handler
+def add_answer_to_db(cursor, new_answer):
+    placeholders = ', '.join(['%s'] * len(new_answer))
+    columns = ', '.join([x[0] for x in new_answer])
+    sql = "INSERT INTO %s ( %s ) VALUES ( %s );" % ('answer', columns, placeholders)
+
+    cursor.execute(sql, [y[1] for y in new_answer])

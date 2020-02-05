@@ -37,6 +37,8 @@ def post_an_answer(question_id):
         new_answer['image'] = 'img'
         new_answer['question_id'] = question_id
 
+        data_manager.add_answer_to_db(new_answer.items())
+
         return redirect(f'/question/{question_id}')
     return render_template("add-answer.html", question_id=question_id)
 

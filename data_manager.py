@@ -49,3 +49,11 @@ def add_answer_to_db(cursor, new_answer):
     sql = "INSERT INTO %s ( %s ) VALUES ( %s );" % ('answer', columns, placeholders)
 
     cursor.execute(sql, [y[1] for y in new_answer])
+
+@connection.connection_handler
+def search_questions(cursor, phrase):
+    sql =   "SELECT * FROM question WHERE title LIKE '%%%s%%' OR message LIKE '%%%s%%';" % (phrase, phrase)
+    cursor.execute(sql)
+    questions = cursor.fetchall()
+
+    return questions

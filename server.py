@@ -61,11 +61,12 @@ def ask_question():
     return render_template("add-question.html")
 
 
-#
-#
-# @app.route('/question/<question_id>/new-answer')
-# def post_an_answer():
-#
+@app.route('/search')
+def search_result():
+    phrase = request.args.get('q')
+    list_of_questions = data_manager.search_questions(phrase)
+
+    return render_template('list.html', phrase=phrase, list_of_questions=list_of_questions)
 
 
 if __name__ == '__main__':

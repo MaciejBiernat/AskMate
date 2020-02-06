@@ -82,9 +82,11 @@ def edit(question_id):
     question = data_manager.get_question_info(question_id)
     old_title = question[0]['title']
     old_message = question[0]['message']
-
     if request.method == "POST":
-        data_manager.edit_question(question_id)
+        new_submission_time = datetime.now()
+        new_title = request.form["title"]
+        new_message = request.form["message"]
+        data_manager.edit_question(question_id, new_submission_time, new_title, new_message)
 
         return redirect(f'/question/{question_id}')
     return render_template('add-question.html', old_message=old_message, old_title=old_title, header=header)

@@ -22,6 +22,17 @@ def add_question(cursor, new_question):
 
 
 @connection.connection_handler
+def edit_question(cursor, question_id, new_submission_time, new_title, new_message):
+    cursor.execute(""" 
+                        UPDATE question 
+                        SET submission_time = %(new_submission_time)s, title = %(new_title)s, message = %(new_message)s
+                        WHERE question.id = %(question_id)s;
+                         """,
+                   {'new_submission_time': new_submission_time, 'new_title': new_title, 'new_message': new_message,
+                    'question_id': question_id})
+
+
+@connection.connection_handler
 def get_question_info(cursor, question_id):
     cursor.execute("""
                         SELECT question.title, question.message, question.id FROM question

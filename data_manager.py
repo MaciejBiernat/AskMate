@@ -52,8 +52,15 @@ def add_answer_to_db(cursor, new_answer):
 
 @connection.connection_handler
 def search_questions(cursor, phrase):
-    sql =   "SELECT * FROM question WHERE title LIKE '%%%s%%' OR message LIKE '%%%s%%';" % (phrase, phrase)
+    # sql = '''SELECT id FROM question WHERE message LIKE '%%%s%%'
+    # UNION
+    # SELECT question_id FROM answer WHERE message LIKE '%%%s%%';''' % (phrase, phrase)
+    sql = '''select distinct question.id, question.title, question.message from question
+            left join answer on answer.question_id = question.id
+            WHERE question.message LIKE '%%%s%%' OR question.title LIKE '%%%s%%' OR answer.message LIKE '%%%s%%' 
+            ORDER BY question.id;''' % (phrase, phrase, phrase)
     cursor.execute(sql)
     questions = cursor.fetchall()
 
     return questions
+

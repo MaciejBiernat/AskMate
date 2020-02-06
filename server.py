@@ -65,8 +65,10 @@ def ask_question():
 def search_result():
     phrase = request.args.get('q')
     list_of_questions = data_manager.search_questions(phrase)
+    titles = ['ID', 'Question title']
 
-    return render_template('list.html', phrase=phrase, list_of_questions=list_of_questions)
+
+    return render_template('list.html', phrase=phrase, list_of_questions=list_of_questions, titles=titles)
 
 
 if __name__ == '__main__':

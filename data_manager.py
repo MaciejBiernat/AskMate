@@ -33,6 +33,17 @@ def get_question_info(cursor, question_id):
 
 
 @connection.connection_handler
+def delete_question(cursor, question_id):
+    cursor.execute("""
+                        DELETE FROM answer
+                        WHERE answer.question_id = %(question_id)s;
+                        DELETE FROM question
+                        WHERE question.id = %(question_id)s
+           
+                               """, {'question_id': question_id})
+
+
+@connection.connection_handler
 def get_answer_info(cursor, question_id):
     cursor.execute("""
                         SELECT answer.message FROM answer

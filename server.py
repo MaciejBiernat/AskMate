@@ -67,8 +67,13 @@ def search_result():
     list_of_questions = data_manager.search_questions(phrase)
     titles = ['ID', 'Question title']
 
-
     return render_template('list.html', phrase=phrase, list_of_questions=list_of_questions, titles=titles)
+
+
+@app.route('/question/<question_id>/delete endpoint')
+def delete(question_id):
+    data_manager.delete_question(question_id)
+    return redirect('/list')
 
 
 if __name__ == '__main__':

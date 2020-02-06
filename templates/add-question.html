@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ADD A QUESTION</title>
+    <title>{{ header }}</title>
 </head>
 <body>
-<h1>Add new question</h1>
+<h1>{{ header }}</h1>
 <form action="/add-question" method="POST">
     Title:<br>
-    <input type="text" name="title" minlength="5" required><br>
+    <input type="text" name="title" minlength="5" value="{{ old_title }}" required><br>
     Message:<br>
-    <textarea type="text" name="message" required></textarea><br>
+    <textarea type="text" name="message" required>{{ old_message }}</textarea><br>
     Image:<br>
     <input type="file" name="fileupload" value="fileupload" id="fileupload">
     <label for="fileupload"> Select an image to upload</label><br><br>

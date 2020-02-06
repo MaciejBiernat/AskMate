@@ -30,7 +30,6 @@ def show_question_info(question_id):
 @app.route('/question/<question_id>/new-answer', methods=["GET", "POST"])
 def post_an_answer(question_id):
     new_answer = {}
-    print('dupa')
     if request.method == "POST":
         new_answer["submission_time"] = datetime.now()
         new_answer['message'] = request.form['message']
@@ -45,6 +44,7 @@ def post_an_answer(question_id):
 
 @app.route('/add-question', methods=["GET", "POST"])
 def ask_question():
+    header = "Ask a question"
     new_question = {}
     titles = ["submission_time", "view_number", "vote_number", "title", "message", "image"]
     if request.method == "POST":
@@ -58,7 +58,7 @@ def ask_question():
         question_id = data_manager.add_question(new_question.items())
         return redirect(f'/question/{question_id}')
 
-    return render_template("add-question.html")
+    return render_template("add-question.html", header=header)
 
 
 @app.route('/search')
@@ -74,6 +74,20 @@ def search_result():
 def delete(question_id):
     data_manager.delete_question(question_id)
     return redirect('/list')
+
+
+@app.route('/question/<question_id>/edit page', methods=["GET", "POST"])
+def edit(question_id):
+    header = "Edit question"
+    question = data_manager.get_question_info(question_id)
+    old_title = question[0]['title']
+    old_message = question[0]['message']
+
+    if request.method == "POST":
+        data_manager.edit_question(question_id)
+
+        return redirect(f'/question/{question_id}')
+    return render_template('add-question.html', old_message=old_message, old_title=old_title, header=header)
 
 
 if __name__ == '__main__':

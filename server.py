@@ -15,7 +15,7 @@ def route_list():
 @app.route('/list')
 def show_list_of_questions():
     list_of_questions = data_manager.get_questions()
-    titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title', 'Message', 'Image']
+    titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title']
 
     return render_template('list.html', list_of_questions=list_of_questions, titles=titles)
 
@@ -39,6 +39,7 @@ def post_an_answer(question_id):
         data_manager.add_answer_to_db(new_answer.items())
 
         return redirect(f'/question/{question_id}')
+    # wykorzystac URL_FOR
     return render_template("add-answer.html", question_id=question_id)
 
 
@@ -54,7 +55,7 @@ def ask_question():
         new_question["title"] = request.form["title"]
         new_question["message"] = request.form["message"]
         new_question["image"] = "img"
-
+# DOCTESTY, TEST DRIVEN DEV
         question_id = data_manager.add_question(new_question.items())
         return redirect(f'/question/{question_id}')
 

@@ -19,6 +19,7 @@ def add_question(cursor, new_question):
     rows = cursor.fetchall()
     id = max([row['id'] for row in rows])
     return id
+# sprawdzic czy to bezpiyeczne
 
 
 @connection.connection_handler

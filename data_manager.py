@@ -87,3 +87,17 @@ def search_questions(cursor, phrase):
 
     return questions
 
+
+@connection.connection_handler
+def check_user(cursor, register_form):
+    cursor.execute("""
+     SELECT user_name, email FROM users WHERE user_name LIKE '%%%s%%' OR email LIKE '%%%s%%'
+    """ % (register_form['user_name'], register_form['email']))
+
+    compare_result = cursor.fetchall()
+    print(compare_result)
+    if len(compare_result) == 0:
+        add_user(register_form)
+    else:
+        print(compare_result)
+        return 'user with these data already exist'

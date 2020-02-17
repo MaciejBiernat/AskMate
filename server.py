@@ -12,8 +12,21 @@ def route_list():
     return render_template("index.html")
 
 
-@app.route('/register')
+@app.route('/register', methods=["GET", "POST"])
 def register():
+    register_form = {}
+    if request.method == 'POST':
+        if request.form['password'] == request.form['repeat password']:
+            register_form['user_name'] = request.form['user_name']
+            register_form['name'] = request.form['name']
+            register_form['email'] = request.form['email']
+            register_form['password'] = request.form['password']
+            register_message = data_manager.check_user(register_form)
+
+        else:
+            return render_template("register.html", pass_message='passwords are not the same')
+        return render_template("register.html", register_message=register_message)
+
     return render_template("register.html")
 
 

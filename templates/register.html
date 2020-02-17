@@ -10,7 +10,7 @@
     <form action="/register" method="POST">
 
         Username:<br>
-        <textarea type="text" name="username" required></textarea><br>
+        <textarea type="text" name="user_name" required></textarea><br>
         Name and Surname:<br>
         <textarea type="text" name="name" required></textarea><br>
         Email:<br>
@@ -21,6 +21,8 @@
         <textarea type="text" name="repeat password" required></textarea><br>
         <br>
         <button type="submit">Register</button>
+
+        <p>{{ pass_message }}{{ register_message }}</p>
     </form>
 {% endblock %}
 {% include 'footer.html' %}

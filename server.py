@@ -12,6 +12,11 @@ def route_list():
     return render_template("index.html")
 
 
+@app.route('/register')
+def register():
+    return render_template("register.html")
+
+
 @app.route('/list')
 def show_list_of_questions():
     list_of_questions = data_manager.get_questions()

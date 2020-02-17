@@ -1,12 +1,18 @@
 {% extends "layout.html" %}
 
+
+
+
+
 {% block content %}
+    <a href="{{ url_for('register') }}">Register here</a><br>
+
     <a href="{{ url_for('show_list_of_questions') }}">Show questions list</a><br>
     <a href="{{ url_for('ask_question') }}">Come on! Ask a question!</a><br>
 
-<form action="/search" method="GET">
-    <br><br>Search for question:<br>
-    <input type="text" name="q"></input><br>
-    <button type="submit">Search!</button>
-</form>
+    <form action="/search" method="GET">
+        <br><br>Search for question:<br>
+        <input type="text" name="q"></input><br>
+        <button type="submit">Search!</button>
+    </form>
 {% endblock %}

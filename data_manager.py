@@ -98,6 +98,15 @@ def check_user(cursor, register_form):
     print(compare_result)
     if len(compare_result) == 0:
         add_user(register_form)
+        return 'registration successfull'
     else:
         print(compare_result)
         return 'user with these data already exist'
+
+
+@connection.connection_handler
+def add_user(cursor, register_form):
+    cursor.execute("""
+                        INSERT INTO users (password, name, user_name, email) VALUES ('%s', '%s', '%s', '%s')"""
+                   % (register_form['password'], register_form['name'], register_form['user_name'],
+                      register_form['email']))

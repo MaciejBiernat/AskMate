@@ -1,4 +1,5 @@
 import connection
+import hashing_utility
 
 
 @connection.connection_handler
@@ -106,7 +107,8 @@ def check_user(cursor, register_form):
 
 @connection.connection_handler
 def add_user(cursor, register_form):
+    hashed_password = hashing_utility.hash_password(register_form['password'])
     cursor.execute("""
                         INSERT INTO users (password, name, user_name, email) VALUES ('%s', '%s', '%s', '%s')"""
-                   % (register_form['password'], register_form['name'], register_form['user_name'],
+                   % (hashed_password, register_form['name'], register_form['user_name'],
                       register_form['email']))

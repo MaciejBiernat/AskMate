@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def route_list(login_message = None):
+def route_list(login_message = ""):
     return render_template("index.html", login_message = login_message)
 
 @app.route('/login', methods=["GET", "POST"])
@@ -26,7 +26,8 @@ def login():
             return render_template('login.html',login_message = login_message)
         else:
             login_message = f"Hi {login_data['user_name']}, you're logged in! Welcome, welcome!"
-            return redirect(url_for("route_list",login_message = login_message))
+            # return redirect(url_for("route_list"),login_message = login_message)
+            return render_template('index.html', login_message=login_message)
 
     return render_template("login.html")
 

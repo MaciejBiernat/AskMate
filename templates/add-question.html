@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ header }}</title>
-</head>
-<body>
+{% extends "layout.html" %}
+
+
+{% block content %}
 <h1>{{ header }}</h1>
 <form action="/add-question" method="POST">
     Title:<br>
@@ -16,6 +13,4 @@
     <label for="fileupload"> Select an image to upload</label><br><br>
     <button type="submit">Add question!</button>
 </form>
-</body>
-{% include 'footer.html' %}
-</html>
+{% endblock %}

@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %}
+
+
+{% block content %}
     <head>
         <meta charset="utf-8">
         <title>Questions list</title>
@@ -35,6 +37,4 @@
                 {% endfor %}
             </tbody>
         </table>
-    </body>
-    {% include 'footer.html' %}
-</html>
+{% endblock %}

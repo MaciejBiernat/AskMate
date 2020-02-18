@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Question </title>
-<body style="background-color:Lavender;">
-<style>
-    td {
-        border: 1px solid #999;
-        padding: 0.1em 1em;
-        max-width: 300px;
-    }
-</style>
-</head>
-<body>
+{% extends "layout.html" %}
+
+
+{% block content %}
+
 <table>
     <thead>
     <th> AskMate Question:</th>
@@ -58,6 +48,6 @@
 <a href="/question/{{ question[0]['id'] }}/delete endpoint">Delete this question</a><br><br>
 
 <a href="/list">Back to Question list</a><br><br>
-</body>
-{% include 'footer.html' %}
-</html>
+
+
+{% endblock %}

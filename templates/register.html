@@ -10,20 +10,20 @@
     <form action="/register" method="POST">
 
         Username:<br>
-        <textarea type="text" name="user_name" required></textarea><br>
+        <input type="text" name="user_name" required></input><br>
         Name and Surname:<br>
-        <textarea type="text" name="name" required></textarea><br>
+        <input type="text" name="name" required></input><br>
         Email:<br>
-        <textarea type="text" name="email" required></textarea><br>
+        <input type="text" name="email" required></input><br>
         Password:<br>
-        <textarea type="text" name="password" required></textarea><br>
+        <input type="password" name="password" required></input><br>
         Repeat Password:<br>
-        <textarea type="text" name="repeat password" required></textarea><br>
+        <input type="password" name="repeat password" required></input><br>
         <br>
         <button type="submit">Register</button>
 
         <p>{{ pass_message }}{{ register_message }}</p>
     </form>
 {% endblock %}
-{% include 'footer.html' %}
+
 

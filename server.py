@@ -2,16 +2,33 @@ from flask import Flask, render_template, request, redirect, url_for
 from collections import OrderedDict
 import connection
 import data_manager
-import bcrypt
+import hashing_utility
 from datetime import datetime
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def route_list():
-    return render_template("index.html")
+def route_list(login_message = None):
+    return render_template("index.html", login_message = login_message)
 
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    login_data = {}
+    if request.method == "POST":
+        login_data['user_name'] = request.form['user_name']
+        login_data['password'] = request.form['password']
+
+        user_name_check = data_manager.check_login_user_name(login_data)
+        password_check = data_manager.check_login_password(login_data)
+        if user_name_check == False or password_check == False:
+            login_message = 'Username or password incorrect. Please try again.'
+            return render_template('login.html',login_message = login_message)
+        else:
+            login_message = f"Hi {login_data['user_name']}, you're logged in! Welcome, welcome!"
+            return redirect(url_for("route_list",login_message = login_message))
+
+    return render_template("login.html")
 
 @app.route('/register', methods=["GET", "POST"])
 def register():

@@ -5,6 +5,9 @@
 
 
 {% block content %}
+
+    <p>{{ login_message }}</p>
+    <a href="{{ url_for('login') }}">Login</a><br>
     <a href="{{ url_for('register') }}">Register here</a><br>
 
     <a href="{{ url_for('show_list_of_questions') }}">Show questions list</a><br>

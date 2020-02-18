@@ -6,23 +6,16 @@
 
 {% block content %}
 
-    <h1>Register Form</h1>
-    <form action="/register" method="POST">
+    <h1>Login </h1>
+    <form action="/login" method="POST">
 
         Username:<br>
         <textarea type="text" name="user_name" required></textarea><br>
-        Name and Surname:<br>
-        <textarea type="text" name="name" required></textarea><br>
-        Email:<br>
-        <textarea type="text" name="email" required></textarea><br>
         Password:<br>
-        <textarea type="text" name="password" required></textarea><br>
-        Repeat Password:<br>
-        <textarea type="text" name="repeat password" required></textarea><br>
-        <br>
-        <button type="submit">Register</button>
+        <textarea type="password" name="password" required></textarea><br>
+        <button type="submit">Login</button>
 
-        <p>{{ pass_message }}{{ register_message }}</p>
+        <p>{{ login_message }}</p>
     </form>
 {% endblock %}
 {% include 'footer.html' %}

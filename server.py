@@ -9,9 +9,13 @@ app = Flask(__name__)
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+
+# session
+
 @app.route('/')
-def route_list(login_message = ""):
-    return render_template("index.html", login_message = login_message)
+def route_list(login_message=""):
+    return render_template("index.html", login_message=login_message)
+
 
 @app.route('/login', methods=["GET", "POST"])
 def login():

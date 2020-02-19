@@ -13,8 +13,9 @@
             <li><a class="active" href="/">Home</a></li>
             <li><a href="{{ url_for('show_list_of_questions') }}">Questions</a></li>
             <li><a href="{{ url_for('ask_question') }}">Ask, Mate!</a></li>
-            <li ><a class="login" href="/">{{ username }}</a></li>
+            <a class="login" href="/">{{ username }}</a>
         </ul>
+
     </div>
 </head>
 <body>

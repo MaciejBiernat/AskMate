@@ -51,6 +51,16 @@ td {
 }
 
 
+#nav-bar .login {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    float: right;
+    font-size: 18px;
+}
+
 /* for flash message after login */
 
 .flashes {

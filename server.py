@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from collections import OrderedDict
 import connection
 import data_manager
@@ -7,6 +7,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route('/')
 def route_list(login_message = ""):
@@ -26,8 +27,9 @@ def login():
             return render_template('login.html',login_message = login_message)
         else:
             login_message = f"Hi {login_data['user_name']}, you're logged in! Welcome, welcome!"
-            # return redirect(url_for("route_list"),login_message = login_message)
-            return render_template('index.html', login_message=login_message)
+            flash(f"Hi {login_data['user_name']}, you're logged in! Welcome, welcome!")
+            return redirect(url_for("route_list"))
+            # return render_template('index.html', login_message=login_message)
 
     return render_template("login.html")
 

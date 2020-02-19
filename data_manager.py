@@ -100,7 +100,6 @@ def check_user(cursor, register_form):
         add_user(register_form)
         return 'registration successfull'
     else:
-        print(compare_result)
         return 'user with these data already exist'
 
 

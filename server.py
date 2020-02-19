@@ -76,7 +76,7 @@ def show_question_info(question_id):
 def post_an_answer(question_id):
     new_answer = {}
     if request.method == "POST":
-        new_answer["submission_time"] = datetime.now()
+        new_answer["submission_time"] = datetime.now().replace(microsecond=0)
         new_answer['message'] = request.form['message']
         new_answer['image'] = 'img'
         new_answer['question_id'] = question_id
@@ -94,7 +94,7 @@ def ask_question():
     new_question = {}
     titles = ["submission_time", "view_number", "vote_number", "title", "message", "image"]
     if request.method == "POST":
-        new_question["submission_time"] = datetime.now()
+        new_question["submission_time"] = datetime.now().replace(microsecond=0)
         new_question["view_number"] = "0"
         new_question["vote_number"] = "0"
         new_question["title"] = request.form["title"]
@@ -129,7 +129,7 @@ def edit(question_id):
     old_title = question[0]['title']
     old_message = question[0]['message']
     if request.method == "POST":
-        new_submission_time = datetime.now()
+        new_submission_time = datetime.now().replace(microsecond=0)
         new_title = request.form["title"]
         new_message = request.form["message"]
         data_manager.edit_question(question_id, new_submission_time, new_title, new_message)

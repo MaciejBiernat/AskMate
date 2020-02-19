@@ -6,53 +6,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
     <style>
-        td {
-            border: 1px solid #999;
-            padding: 0.1em 1em;
-            max-width: 300px;
-        }
 
-        body {
-            font-size: 28px;
-        }
-
-        ul {
-            list-style-type: none;
-            margin: -10px;
-            padding: 0;
-            overflow: hidden;
-            background-color: #333;
-            position: -webkit-sticky; /* Safari */
-            position: sticky;
-            top: 0;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-        li a:hover {
-            background-color: #111;
-        }
-
-        .active {
-            background-color: #4CAF50;
-        }
     </style>
-    <ul>
-        <li><a class="active" href="/">Home</a></li>
-        <li><a href="{{ url_for('show_list_of_questions') }}">Questions</a></li>
-        <li><a href="{{ url_for('ask_question') }}">Ask, Mate!</a></li>
-    </ul>
-
+    <div id="nav-bar">
+        <ul>
+            <li><a class="active" href="/">Home</a></li>
+            <li><a href="{{ url_for('show_list_of_questions') }}">Questions</a></li>
+            <li><a href="{{ url_for('ask_question') }}">Ask, Mate!</a></li>
+        </ul>
+    </div>
 </head>
 <body>
 

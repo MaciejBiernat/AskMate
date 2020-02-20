@@ -17,15 +17,20 @@ td {
 /* Navigation Styles Starts */
 
 
-#nav-bar ul {
-    list-style-type: none;
-    margin: -10px;
-    padding: 0;
-    overflow: hidden;
+#nav-bar {
+
+
     background-color: #333;
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
+}
+
+#nav-bar ul {
+    margin: -10px;
+    padding: 0;
+    overflow: hidden;
+    list-style-type: none;
 }
 
 #nav-bar li {

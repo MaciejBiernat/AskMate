@@ -16,7 +16,7 @@
             {% if not username %}
                 <a class="login" href="/login">Login</a>
             {% else %}
-                <a class="login" href="/user">{{ username }}</a>
+                <a class="login" href="/user/{{ username }}">{{ username }}</a>
             {% endif %}
             </a>
         </ul>

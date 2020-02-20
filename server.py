@@ -113,9 +113,12 @@ def ask_question():
         new_question["title"] = request.form["title"]
         new_question["message"] = request.form["message"]
         new_question["image"] = "img"
+        if 'username' in session:
+            new_question["user_name"] = session['username']
 # DOCTESTY, TEST DRIVEN DEV
         question_id = data_manager.add_question(new_question.items())
         return redirect(f'/question/{question_id}')
+
     if 'username' in session:
         return render_template("add-question.html", header=header, username=session["username"])
     else:
@@ -138,6 +141,12 @@ def search_result():
 def delete(question_id):
     data_manager.delete_question(question_id)
     return redirect('/list')
+
+@app.route('/user/<user_id>')
+def user_page():
+    pass
+
+
 
 
 @app.route('/question/<question_id>/edit page', methods=["GET", "POST"])

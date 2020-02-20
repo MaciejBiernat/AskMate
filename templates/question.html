@@ -31,9 +31,7 @@
         {% for answer in answers %}
             <tr>
                 <td>
-                    <strong> Answer: {{ loop.index }} </strong>
-
-                    <pre>{{ answer['message'] }}</pre>
+                    <strong> Answer: {{ loop.index }} </strong><br>{{ answer['message'] }}
                 </td>
             </tr>
         {% endfor %}

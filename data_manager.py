@@ -48,6 +48,10 @@ def get_question_info(cursor, question_id):
 @connection.connection_handler
 def delete_question(cursor, question_id):
     cursor.execute("""
+                        DELETE FROM question_tag
+                        WHERE question_tag.question_id = %(question_id)s;
+                        DELETE FROM comment
+                        WHERE comment.question_id = %(question_id)s;
                         DELETE FROM answer
                         WHERE answer.question_id = %(question_id)s;
                         DELETE FROM question

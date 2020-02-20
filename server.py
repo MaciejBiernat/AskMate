@@ -36,8 +36,11 @@ def login():
             flash(f"Hi {login_data['user_name']}, you're logged in! Welcome, welcome!")
             session['username'] = request.form['user_name']
             return redirect(url_for("route_list"))
+    if 'username' in session:
+        return render_template("login.html", username=session["username"])
+    else:
+        return render_template("login.html")
 
-    return render_template("login.html")
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
@@ -53,24 +56,31 @@ def register():
         else:
             return render_template("register.html", pass_message='passwords are not the same')
         return render_template("register.html", register_message=register_message)
-
-    return render_template("register.html")
+    if 'username' in session:
+        return render_template("register.html", username=session["username"])
+    else:
+        return render_template("register.html")
 
 
 @app.route('/list')
 def show_list_of_questions():
     list_of_questions = data_manager.get_questions()
     titles = ['ID', 'Submission Time', 'View Number', 'Vote Number', 'Title']
+    if 'username' in session:
+        return render_template('list.html', list_of_questions=list_of_questions, titles=titles, username=session["username"])
+    else:
+        return render_template('list.html', list_of_questions=list_of_questions, titles=titles)
 
-    return render_template('list.html', list_of_questions=list_of_questions, titles=titles)
 
 
 @app.route('/question/<int:question_id>')
 def show_question_info(question_id):
     question = data_manager.get_question_info(question_id)
     answers = data_manager.get_answer_info(question_id)
-
-    return render_template('question.html', question=question, answers=answers)
+    if 'username' in session:
+        return render_template('question.html', question=question, answers=answers, username=session["username"])
+    else:
+        return render_template('question.html', question=question, answers=answers)
 
 @app.route('/question/<question_id>/new-answer', methods=["GET", "POST"])
 def post_an_answer(question_id):
@@ -85,7 +95,10 @@ def post_an_answer(question_id):
 
         return redirect(f'/question/{question_id}')
     # wykorzystac URL_FOR
-    return render_template("add-answer.html", question_id=question_id)
+    if 'username' in session:
+        return render_template("add-answer.html", question_id=question_id, username=session["username"])
+    else:
+        return render_template("add-answer.html", question_id=question_id)
 
 
 @app.route('/add-question', methods=["GET", "POST"])
@@ -103,8 +116,10 @@ def ask_question():
 # DOCTESTY, TEST DRIVEN DEV
         question_id = data_manager.add_question(new_question.items())
         return redirect(f'/question/{question_id}')
-
-    return render_template("add-question.html", header=header)
+    if 'username' in session:
+        return render_template("add-question.html", header=header, username=session["username"])
+    else:
+        return render_template("add-question.html", header=header)
 
 
 @app.route('/search')
@@ -113,7 +128,10 @@ def search_result():
     list_of_questions = data_manager.search_questions(phrase)
     titles = ['ID', 'Question title']
 
-    return render_template('list.html', phrase=phrase, list_of_questions=list_of_questions, titles=titles)
+    if 'username' in session:
+        return render_template('list.html', phrase=phrase, list_of_questions=list_of_questions, titles=titles, username=session["username"])
+    else:
+        render_template('list.html', phrase=phrase, list_of_questions=list_of_questions, titles=titles)
 
 
 @app.route('/question/<question_id>/delete endpoint')
@@ -135,7 +153,10 @@ def edit(question_id):
         data_manager.edit_question(question_id, new_submission_time, new_title, new_message)
 
         return redirect(f'/question/{question_id}')
-    return render_template('add-question.html', old_message=old_message, old_title=old_title, header=header)
+    if 'username' in session:
+        return render_template('add-question.html', old_message=old_message, old_title=old_title, header=header, username=session["username"])
+    else:
+        return render_template('add-question.html', old_message=old_message, old_title=old_title, header=header)
 
 
 if __name__ == '__main__':

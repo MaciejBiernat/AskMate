@@ -4,6 +4,20 @@ body {
     font-size: 28px;
 }
 
+a {
+    display: block;
+    color: greenyellow;
+    text-align: left;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+
+a:hover {
+    background-color: #86989B;
+}
+
+
 td {
     border: 1px solid #999;
     padding: 0.1em 1em;
@@ -64,7 +78,6 @@ td {
     padding: 14px 16px;
     text-decoration: none;
     float: right;
-    font-size: 18px;
 }
 
 /* for flash message after login */

@@ -106,7 +106,7 @@ def post_an_answer(question_id):
 def ask_question():
     header = "Ask a question"
     new_question = {}
-    titles = ["submission_time", "view_number", "vote_number", "title", "message", "image"]
+    action = '/add-question'
     if request.method == "POST":
         new_question["submission_time"] = datetime.now().replace(microsecond=0)
         new_question["view_number"] = "0"
@@ -121,9 +121,9 @@ def ask_question():
         return redirect(f'/question/{question_id}')
 
     if 'username' in session:
-        return render_template("add-question.html", header=header, username=session["username"])
+        return render_template("add-question.html", action=action, header=header, username=session["username"])
     else:
-        return render_template("add-question.html", header=header)
+        return render_template("add-question.html", action=action, header=header)
 
 
 @app.route('/search')
@@ -160,6 +160,7 @@ def edit(question_id):
     question = data_manager.get_question_info(question_id)
     old_title = question[0]['title']
     old_message = question[0]['message']
+    action = f'/question/{question_id}/edit page'
     if request.method == "POST":
         new_submission_time = datetime.now().replace(microsecond=0)
         new_title = request.form["title"]
@@ -168,9 +169,11 @@ def edit(question_id):
 
         return redirect(f'/question/{question_id}')
     if 'username' in session:
-        return render_template('add-question.html', old_message=old_message, old_title=old_title, header=header, username=session["username"])
+        return render_template('add-question.html', action=action, question_id=question_id, old_message=old_message,
+                               old_title=old_title, header=header, username=session["username"])
     else:
-        return render_template('add-question.html', old_message=old_message, old_title=old_title, header=header)
+        return render_template('add-question.html', action=action, question_id=question_id, old_message=old_message,
+                               old_title=old_title, header=header)
 
 
 if __name__ == '__main__':

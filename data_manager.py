@@ -51,6 +51,7 @@ def edit_question(cursor, question_id, new_submission_time, new_title, new_messa
                     'question_id': question_id})
 
 
+
 @connection.connection_handler
 def get_question_info(cursor, question_id):
     cursor.execute("""
@@ -59,6 +60,7 @@ def get_question_info(cursor, question_id):
                                """, {'question_id': question_id})
 
     question_info = cursor.fetchall()
+    print(question_info)
     return question_info
 
 

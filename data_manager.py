@@ -11,6 +11,23 @@ def get_questions(cursor):
     return questions
 
 @connection.connection_handler
+def get_questions_by_user(cursor, user_name):
+    cursor.execute("""
+                        SELECT id, title, submission_time, view_number, vote_number FROM question WHERE user_name ='%s';
+                               """ % (user_name))
+    questions = cursor.fetchall()
+    return questions
+
+@connection.connection_handler
+def get_answers_by_user(cursor, user_name):
+    cursor.execute("""
+                        SELECT id, question_id, submission_time, vote_number FROM answer WHERE user_name ='%s';
+                               """ % (user_name))
+    answers = cursor.fetchall()
+    return answers
+
+
+@connection.connection_handler
 def add_question(cursor, new_question):
     placeholders = ', '.join(['%s'] * len(new_question))
     columns = ', '.join([x[0] for x in new_question])

@@ -90,7 +90,8 @@ def post_an_answer(question_id):
         new_answer['message'] = request.form['message']
         new_answer['image'] = 'img'
         new_answer['question_id'] = question_id
-
+        if 'username' in session:
+            new_answer["user_name"] = session['username']
         data_manager.add_answer_to_db(new_answer.items())
 
         return redirect(f'/question/{question_id}')
@@ -143,8 +144,12 @@ def delete(question_id):
     return redirect('/list')
 
 @app.route('/user/<user_id>')
-def user_page():
-    pass
+def user_page(user_id):
+    questions_titles = ["id", "title", "submission time", "view number", "vote number"]
+    answers_titles = ["id", "question id", "submission time", "vote number"]
+    questions = data_manager.get_questions_by_user(user_id)
+    answers = data_manager.get_answers_by_user(user_id)
+    return render_template('userpage.html', questions_titles=questions_titles, answers_titles=answers_titles, questions=questions, answers=answers, username=session['username'])
 
 
 

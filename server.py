@@ -145,11 +145,12 @@ def delete(question_id):
 
 @app.route('/user/<user_id>')
 def user_page(user_id):
-    questions_titles = ["id", "title", "submission time", "view number", "vote number"]
-    answers_titles = ["id", "question id", "submission time", "vote number"]
+    questions_titles = ["ID", "Title", "Submission time", "View number", "Vote number"]
+    answers_titles = ["ID", "Question ID", "Submission time", "Vote number"]
     questions = data_manager.get_questions_by_user(user_id)
     answers = data_manager.get_answers_by_user(user_id)
-    return render_template('userpage.html', questions_titles=questions_titles, answers_titles=answers_titles, questions=questions, answers=answers, username=session['username'])
+    return render_template('userpage.html', questions_titles=questions_titles, answers_titles=answers_titles,
+                           questions=questions, answers=answers, username=session['username'])
 
 
 

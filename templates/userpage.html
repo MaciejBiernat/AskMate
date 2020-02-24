@@ -4,7 +4,7 @@
 {% block content %}
     <head>
         <meta charset="utf-8">
-        <title> {{ username }} activity</title>
+        <title> Activity of {{ username }}:</title>
         <style>
             td {
                 border: 1px solid #999;
@@ -13,17 +13,17 @@
         </style>
     </head>
     <body>
-    <h1>{{ username }} activity</h1>
+    <h1>Activity of {{ username }}:</h1>
     <body>
     <h2>Questions:</h2>
     <table width='100%'>
         <thead>
         <tr>
             {% for title in questions_titles %}
-                    <th>{{ title }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
+                <th>{{ title }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
             <tbody>
                 {% for question in questions %}
                     <tr>
